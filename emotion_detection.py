@@ -1,3 +1,4 @@
+import json
 import requests
 
 def emotion_detector(text_to_analyze):
@@ -14,5 +15,13 @@ def emotion_detector(text_to_analyze):
     # Make a POST request to the API with the payload and headers
     response = requests.post(url, json=myobj, headers=header)
 
+    #Conver text to json
+    formatted_response = json.loads(response.text)
+    print(json.dumps(formatted_response, indent=2))  # Pomůže zjistit strukturu
+
+    # Extrakce slovníku s emocemi
+    emotion = formatted_response['emotionPredictions'][0]['emotion']
+    # Extract the emotion from the response
+
     # Return the result as a text
-    return 'hovno'
+    return emotion
