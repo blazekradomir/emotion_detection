@@ -20,7 +20,7 @@ def emotion_detector(text_to_analyze):
 
     # Extract the emotion from the response
     emotion = formatted_response["emotionPredictions"][0]["emotion"]
-    emotion["dominant_emotion"] = max(emotion, key=emotion.get)
+    emotion["dominant_emotion"] = max(emotion.values())
 
     # Return the result as a text
     return emotion
